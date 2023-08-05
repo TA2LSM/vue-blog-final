@@ -2,99 +2,31 @@
   <div class="home">
     <h1>Home</h1>
 
-    <!-- <h2>Refs</h2>
-    <p>{{ person.name }} - {{  person.age }}</p>
-    <button @click="updatePerson">Update Person</button>
+    <button @click="showPosts = !showPosts">Toggle Posts</button>
+    <button @click="posts.pop()" style="margin-left: 4px;">Delete a post!</button>
 
-    <h2>Reactive</h2>
-    <p>{{ person2.name }} - {{  person2.age }}</p>
-    <button @click="updatePerson2">Update Person2</button> -->
-
-    <!-- <p>{{ name }}</p> -->
-
-    <input type="text" v-model="search"> 
-    <p>Search term: {{ search }}</p>
-    <div v-for="name in matchingNames" :key="name">
-      {{ name }}
-    </div>
-    <button @click="handleClick">Stop watching</button>
+    <PostList v-if="showPosts" :posts="posts" />
 
   </div>
 </template>
 
 <script>
-// import { ref, reactive } from 'vue'
-import { ref, computed, watch, watchEffect } from 'vue'
+import { ref } from 'vue'
+import PostList from '../components/PostList.vue'
 
 export default {
   name: 'Home',
+  components: { PostList },
 
   setup() {
-    // const person = ref({name: 'ta2lsm', age: 39})
-    // const person2 = reactive({name: 'John', age: 15})
+    const posts = ref([
+      {title: "Welcome to the blog", body: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam eos iure incidunt, unde sapiente mollitia natus nemo nobis reiciendis! Magni optio molestiae recusandae distinctio doloremque laborum exercitationem ducimus excepturi repudiandae consectetur nobis illo molestias nisi dolor, sunt ullam nemo temporibus? Animi, eos quibusdam. Provident recusandae quidem unde nostrum neque ad at itaque, iure mollitia in temporibus numquam, aperiam eveniet inventore ratione reiciendis. Ex, at libero rerum qui ipsa voluptatibus culpa, voluptas molestias soluta magnam dolores aperiam totam, alias fugit porro nemo? Quod, aperiam necessitatibus cumque, culpa doloribus nihil facilis cum sequi dolorum numquam beatae eligendi similique quo ab! Pariatur reiciendis soluta labore sapiente eligendi dolore sequi consequuntur! Reprehenderit iure dolore repellendus quam, veritatis cupiditate sequi dolorem eaque nulla fugit repudiandae molestias exercitationem, sit soluta omnis doloremque possimus deleniti mollitia. Eaque saepe itaque ratione expedita adipisci maxime veniam! Ab neque quod officia distinctio inventore in consectetur cupiditate quia ipsa sunt. Minima fugit, labore animi quibusdam nulla accusamus tenetur repellat, eum quidem odio tempore corrupti vitae qui incidunt quia, commodi ipsa voluptatum ad! Recusandae accusamus, eaque officiis placeat quibusdam totam blanditiis reiciendis, id facere atque vero corrupti nobis inventore esse fuga voluptatem reprehenderit impedit est. Odio veniam in rerum, ducimus consequuntur eos.", id: 1},
+      {title: "Top 5 CSS tips", body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus dicta saepe vero eaque voluptate similique at, blanditiis ducimus eos a porro maiores dolorem adipisci enim nulla provident minus laboriosam natus. Quisquam magnam debitis iste labore facilis sapiente quas iusto a, recusandae nesciunt veritatis? Eius, maiores quae dolores harum sint eaque porro consequatur similique culpa maxime optio tempore iusto, quam dicta, ea libero neque. Adipisci alias consectetur perspiciatis vero quos non delectus quibusdam hic quam, autem earum! Blanditiis possimus sint, iusto cumque eos asperiores iste sapiente magnam incidunt esse aut dolor hic? Sequi ipsa dignissimos recusandae laboriosam reiciendis eos asperiores odit obcaecati nobis error pariatur exercitationem assumenda fugiat, ab, sed voluptate? Dolorum est eum facere quasi quidem, eos pariatur quibusdam nobis deleniti fuga rem deserunt. Quam aperiam accusamus inventore nobis rerum maiores mollitia repellat, porro sed ab sint fugiat dolore debitis autem eveniet culpa quae incidunt praesentium excepturi qui expedita officiis? Enim, natus quia iure veniam esse aspernatur odit delectus ut possimus blanditiis itaque. Molestias modi nobis necessitatibus sit dolorem aliquam facere, sapiente possimus consectetur minima odio recusandae quasi corporis odit voluptatem sunt quaerat laudantium? Consequuntur atque nihil amet, magnam nemo porro corrupti. Velit est deserunt recusandae, error laborum quasi debitis corporis ducimus quis doloribus aut tempora. Aliquid velit cumque odio repellat accusamus quia saepe quis suscipit. Cumque sit provident accusamus. Tempora rem eligendi expedita. Impedit ex eos maiores cupiditate corrupti neque quidem laudantium et modi quod? Facere, repudiandae voluptas eligendi perspiciatis accusamus aut cumque necessitatibus. In laboriosam repellat totam quidem! Veritatis odio laudantium dolores voluptate itaque incidunt eveniet illum exercitationem unde iste nihil placeat deleniti, dolore consequuntur voluptates eius voluptatibus est! Veniam, hic nesciunt enim, quaerat in ipsum autem facilis deleniti sequi expedita ipsa voluptate quam dolorum officia eligendi et recusandae praesentium perspiciatis quia. Aliquid qui nisi rem ratione accusamus similique, dolor repellendus tenetur vel aspernatur excepturi aut officiis quasi molestias sed minima deleniti omnis? Tempora, officia pariatur molestiae similique molestias quam vel odit cum. Cupiditate totam corporis laudantium mollitia incidunt eveniet, dolorem inventore commodi soluta rerum porro, aliquam quis suscipit dignissimos sint facere placeat natus error sit? Tempore repudiandae hic nulla. Repellendus nobis numquam velit fuga temporibus officiis exercitationem, maiores laborum, consectetur itaque delectus? Minus quam temporibus non at dolorum earum quisquam beatae ipsa aut repellat. Voluptate iure eum blanditiis nihil, quam incidunt amet excepturi minima soluta, velit aspernatur autem natus aliquid facere possimus quisquam est sed doloremque recusandae mollitia aliquam obcaecati rerum, deleniti esse? Veritatis eaque excepturi incidunt nam aliquam? Corporis rem porro voluptatem voluptas, earum eligendi sequi neque odio illo laudantium aliquid impedit beatae pariatur sapiente accusamus cumque nostrum sit incidunt alias accusantium obcaecati, magnam fuga? Incidunt laudantium odio deleniti excepturi quisquam, aliquam distinctio necessitatibus facilis ipsa ipsam architecto ea aliquid. Ipsum neque facere rerum sequi alias quis delectus dolore quia quibusdam ducimus repudiandae voluptate magni et iste voluptatem tenetur, voluptatibus sit doloribus illo, amet, dolor soluta possimus? Quisquam, voluptate officiis quas aperiam praesentium voluptatum cum beatae quae exercitationem architecto? Amet quasi quos architecto, explicabo eum atque.", id: 2},
+    ])
 
-    //const name = ref('ta2lsm')    // reactive value
-    //const name2 = reactive('John')    // not a reactive value. reactive expression can not use primitive types of values such a 'John'
+    const showPosts = ref(true)
 
-    // const updatePerson = () => {
-    //   person.value.age = 45
-    // }
-
-    // const updatePerson2 = () => {
-    //   // no need to use "value"
-    //   person2.age = 25
-
-    //   //name2 = 'ninja'   // can not to be updated
-    // }
-
-    // return { person, person2, updatePerson, updatePerson2, name2 }
-    // return { person, person2, updatePerson, updatePerson2 }
-
-    // const name = computed(() => {
-    //   return 'ta2lsm'
-    // })
-
-    // return { name }
-
-    const names = ref(['mario', 'yoshi', 'luigi', 'toad', 'bowser', 'koopa', 'peach',])
-    const search = ref('')
-
-    //  watch hook
-    // watch(search, () => {
-    //   console.log('watch function ran')
-    // })
-
-    // watchEffect(() => {
-    //   // always runs initially
-    //   console.log('watchEffect function ran')
-
-    //   // only runs when search.value changes
-    //   console.log('watchEffect function ran', search.value)
-    // })
-
-    const stopWatch = watch(search, () => {
-      console.log('watch function ran')
-    })
-
-    const stopWatchEffect = watchEffect(() => {
-      // always runs initially
-      console.log('watchEffect function ran')
-
-      // only runs when search.value changes
-      console.log('watchEffect function ran', search.value)
-    })
-
-    // These will stop watching
-    const handleClick = () => {
-      stopWatch()
-      stopWatchEffect()
-    }
-
-    const matchingNames = computed( () => {
-      return names.value.filter( (name) => name.includes(search.value))
-    })
-
-    return { names, search, matchingNames, handleClick }
-  }
+    return { posts, showPosts }
+  } 
 }
 </script>
