@@ -28,7 +28,11 @@
       onUpdated(() => {
         console.log("component updated")
       })
-    }
+    },
+
+    // mounted() {
+    //   console.log("mounted using options API")
+    // }
   }
 
 </script>
