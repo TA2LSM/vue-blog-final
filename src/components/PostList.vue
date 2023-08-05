@@ -19,15 +19,15 @@
       // console.log(props.posts)
 
       // when using lifecycle hooks in setup function add "on" at the beginnig of their names
-      onMounted(() => {
-        console.log("component mounted")
-      })
-      onUnmounted(() => {
-        console.log("component unmounted")
-      })
-      onUpdated(() => {
-        console.log("component updated")
-      })
+      // onMounted(() => {
+      //   console.log("component mounted")
+      // })
+      // onUnmounted(() => {
+      //   console.log("component unmounted")
+      // })
+      // onUpdated(() => {
+      //   console.log("component updated")
+      // })
     },
 
     // mounted() {
